@@ -34,7 +34,7 @@ function Landing() {
 
         <p className="p_landing">
           Une interface qui évolue automatiquement selon la metéo de Paris, le moment de
-          la journée et le rythme de la semaine pour proposer la bonne action au
+          la journée et le rythme de la semaine pour proposer le bon thème au
           bon instant.
         </p>
 
@@ -55,7 +55,7 @@ function Landing() {
         <ul className="landing_metrics" aria-label="Apercu des points forts">
           <li>UI contextuelle</li>
           <li>Adaptation météo</li>
-          <li>Rythme jour/nuit</li>
+          <li>Découpage journalier</li>
         </ul>
       </main>
     </section>
