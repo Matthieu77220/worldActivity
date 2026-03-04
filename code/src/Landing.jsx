@@ -28,12 +28,12 @@ function Landing() {
   return (
     <section id="background">
       <main className="landing_shell">
-        <p className="landing_eyebrow">WorldActivity</p>
+        <p className="landing_eyebrow">worldActivity</p>
 
         <h1 className="h1_landing">Ton activité guidée par le contexte réel.</h1>
 
         <p className="p_landing">
-          Une interface qui évolue automatiquement selon la metéo, le moment de
+          Une interface qui évolue automatiquement selon la metéo de Paris, le moment de
           la journée et le rythme de la semaine pour proposer la bonne action au
           bon instant.
         </p>
