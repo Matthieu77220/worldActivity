@@ -1,0 +1,215 @@
+DOCUMENTATION D'UTILISATION - worldActivity
+===========================================
+
+1. Presentation du projet
+-------------------------
+
+worldActivity est une application React creee avec Vite.
+
+L'application affiche une page d'accueil puis une page principale qui adapte son interface selon :
+- le jour de la semaine ;
+- le moment de la journee ;
+- la meteo actuelle a Paris ;
+- la temperature actuelle a Paris.
+
+La meteo est recuperee depuis l'API Open-Meteo.
+
+
+2. Prerequis
+------------
+
+Avant de lancer le projet, il faut avoir installe :
+- Node.js ;
+- npm.
+
+Le projet utilise notamment :
+- React ;
+- Vite ;
+- React Router DOM ;
+- Vanta pour l'effet visuel de la page d'accueil.
+
+
+3. Installation
+---------------
+
+Depuis un terminal, se placer dans le dossier du projet :
+
+cd code
+
+Installer les dependances :
+
+npm install
+
+
+4. Lancer le projet en developpement
+------------------------------------
+
+Pour demarrer le serveur de developpement :
+
+npm run dev
+
+Vite affiche ensuite une adresse locale dans le terminal, par exemple :
+
+http://localhost:5173/
+
+Ouvrir cette adresse dans un navigateur pour utiliser l'application.
+
+
+5. Utilisation de l'application
+-------------------------------
+
+Page d'accueil :
+- l'utilisateur arrive sur la route "/";
+- la page presente le projet worldActivity ;
+- un effet visuel de nuages est affiche en arriere-plan ;
+- le bouton "Ouvrir la page principale" redirige vers la page principale ;
+- le bouton "Voir mon portfolio" ouvre un lien externe dans un nouvel onglet.
+
+Page principale :
+- l'utilisateur arrive sur la route "/pageprincipale" ;
+- l'application calcule automatiquement le jour actuel ;
+- un message different est affiche selon le jour de la semaine ;
+- l'application calcule l'heure actuelle ;
+- l'apparence du panneau change selon la periode :
+  nuit, matin, apres-midi ou soir ;
+- l'application recupere la meteo actuelle de Paris ;
+- la page affiche la condition meteo et la temperature en degres Celsius.
+
+Pendant le chargement de la meteo, le texte suivant s'affiche :
+
+Chargement de la meteo...
+
+Si l'API meteo ne repond pas correctement, un message d'erreur est affiche.
+
+
+6. Fonctionnement des themes
+----------------------------
+
+Le theme visuel de la page principale depend de plusieurs elements.
+
+Theme du jour :
+- dimanche : theme_dimanche ;
+- lundi : theme_lundi ;
+- mardi : theme_mardi ;
+- mercredi : theme_mercredi ;
+- jeudi : theme_jeudi ;
+- vendredi : theme_vendredi ;
+- samedi : theme_samedi.
+
+Theme de l'heure :
+- de 00h a 05h : theme_nuit ;
+- de 06h a 11h : theme_matin ;
+- de 12h a 17h : theme_aprem ;
+- de 18h a 23h : theme_soir.
+
+Theme de la meteo :
+- soleil : meteo-ensoleille ;
+- nuages : meteo-nuageux ;
+- pluie : meteo-pluie ;
+- neige : meteo-neige ;
+- brouillard : meteo-brouillard ;
+- orage : meteo-orage ;
+- cas non reconnu : meteo-standard.
+
+Theme de temperature :
+- 0 degre ou moins : temp-glacial ;
+- jusqu'a 10 degres : temp-froid ;
+- jusqu'a 20 degres : temp-frais ;
+- jusqu'a 28 degres : temp-doux ;
+- jusqu'a 34 degres : temp-chaud ;
+- au-dessus de 34 degres : temp-canicule.
+
+
+7. Structure importante du projet
+---------------------------------
+
+code/package.json
+Contient les dependances et les scripts npm.
+
+code/src/main.jsx
+Point d'entree de l'application. Il importe les fichiers CSS globaux et affiche App.
+
+code/src/App.jsx
+Configure les routes de l'application :
+- "/" affiche Landing ;
+- "/pageprincipale" affiche PagePrincipale.
+
+code/src/Landing.jsx
+Composant de la page d'accueil.
+
+code/src/PagePrincipale.jsx
+Composant principal qui gere :
+- les messages selon le jour ;
+- les classes CSS selon l'heure ;
+- l'appel a l'API Open-Meteo ;
+- l'affichage de la meteo et de la temperature.
+
+code/src/styles/landing.css
+Styles de la page d'accueil.
+
+code/src/styles/pageprincipale.css
+Styles des themes de jour, d'heure, de meteo et de temperature.
+
+code/src/styles/index.css
+Styles globaux.
+
+
+8. Commandes utiles
+-------------------
+
+Lancer le projet :
+
+npm run dev
+
+Construire la version de production :
+
+npm run build
+
+Previsualiser la version de production :
+
+npm run preview
+
+Lancer ESLint :
+
+npm run lint
+
+
+9. Modifier les messages du jour
+--------------------------------
+
+Les messages sont dans le fichier :
+
+code/src/PagePrincipale.jsx
+
+Ils sont definis dans le tableau dateDuJour.
+
+Pour modifier un message, changer la valeur de la propriete "message" du jour souhaite.
+
+
+10. Modifier la ville de la meteo
+---------------------------------
+
+La meteo est actuellement configuree pour Paris avec les coordonnees :
+
+latitude=48.8534
+longitude=2.3488
+
+Ces valeurs sont utilisees dans l'URL de l'appel API Open-Meteo dans :
+
+code/src/PagePrincipale.jsx
+
+Pour utiliser une autre ville, remplacer la latitude et la longitude dans cette URL.
+
+
+11. Remarques
+-------------
+
+L'application a besoin d'une connexion Internet pour recuperer la meteo.
+
+Si la meteo ne se charge pas, verifier :
+- la connexion Internet ;
+- l'accessibilite de l'API Open-Meteo ;
+- les messages d'erreur dans la console du navigateur.
+
+Les animations CSS respectent la preference systeme "reduced motion" :
+si l'utilisateur a reduit les animations dans son systeme, les animations sont desactivees.
